@@ -71,7 +71,7 @@ export default class VideoPlayer extends Component {
       // Controls
 
       isFullscreen:
-        this.props.isFullScreen || this.props.resizeMode === 'cover' || false,
+        this.props.isFullscreen || this.props.resizeMode === 'cover' || false,
       width: 0,
       showTimeRemaining: this.props.showTimeRemaining,
       showHours: this.props.showHours,
@@ -230,7 +230,7 @@ export default class VideoPlayer extends Component {
     if (typeof this.props.onLoadStart === 'function') {
       this.props.onLoadStart(...arguments);
     }
-    console.log('onLoadStart', this.state.source.uri);
+    // console.log('onLoadStart', this.state.source.uri);
   }
 
   /**
@@ -244,7 +244,7 @@ export default class VideoPlayer extends Component {
     let state = this.state;
 
     if (state.changingVideoResolution) {
-      console.log('restorePreviousTime', state.currentTime);
+      // console.log('restorePreviousTime', state.currentTime);
       this.seekTo(state.currentTime);
     }
 
@@ -353,7 +353,7 @@ export default class VideoPlayer extends Component {
    */
   _onScreenTouch(touchEvent) {
     if (this.player.tapActionTimeout) {
-      console.log(touchEvent.nativeEvent);
+      // console.log(touchEvent.nativeEvent);
       clearTimeout(this.player.tapActionTimeout);
       this.player.tapActionTimeout = 0;
       // this.methods.toggleFullscreen();
@@ -379,7 +379,7 @@ export default class VideoPlayer extends Component {
   _onDoublePress(pressEvent) {
     const relativeX = parseFloat(pressEvent.locationX / this.state.width);
     if (Number.isNaN(relativeX)) return;
-    console.log(relativeX);
+    // console.log(relativeX);
     if (relativeX > 1 / 3 && relativeX < 2 / 3) {
       this.methods.toggleFullscreen();
     } else {
@@ -953,7 +953,7 @@ export default class VideoPlayer extends Component {
 
     if (state.videoSources !== videoSources) {
       if (!state.loading) {
-        console.log('loading new sources');
+        // console.log('loading new sources');
         const {uri, videoResolution} =
           videoSources.find(
             vs => vs.videoResolution === state.videoResolution,
@@ -1261,10 +1261,11 @@ export default class VideoPlayer extends Component {
    * Render fullscreen toggle and set icon based on the fullscreen state.
    */
   renderFullscreen() {
-    let source =
-      this.state.isFullscreen === true
-        ? require('./assets/img/shrink.png')
-        : require('./assets/img/expand.png');
+    // let source =
+    //   this.state.isFullscreen === true
+    //     ? require('./assets/img/shrink.png')
+    //     : require('./assets/img/expand.png');
+    let source = require('./assets/img/expand.png');
     return this.renderControl(
       <Image source={source} />,
       this.methods.toggleFullscreen,
